@@ -83,7 +83,9 @@ body::before{
 .icon-btn{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:11px;background:var(--surface);border:1px solid var(--line);color:var(--dim);transition:.2s}
 .icon-btn:hover{color:var(--text);background:var(--surface-2)}
 .dot-red{position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 2px var(--surface)}
-.avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;font-family:var(--fd);font-weight:700;font-size:14px;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#0A0E13;flex:none}
+.avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:11px;font-family:var(--fd);font-weight:700;font-size:14px;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#0A0E13;flex:none;overflow:hidden;cursor:pointer}
+.auth-pop{position:absolute;top:50px;right:0;width:230px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:12px;box-shadow:var(--shadow);padding:14px;z-index:30}
+.auth-pop-name{font-family:var(--fd);font-weight:700;font-size:14px}
 .hamburger{display:none}
 
 /* timezone + live in topbar */

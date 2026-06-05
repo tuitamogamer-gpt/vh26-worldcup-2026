@@ -10,6 +10,7 @@ interface ResultsContextValue {
   setResult: (matchId: number, result: MatchResult | null) => void
   clearAll: () => void
   loadDemo: () => void
+  hydrate: (map: ResultsMap) => void
   playedCount: number
 }
 
@@ -51,14 +52,16 @@ export function ResultsProvider({ children }: { children: React.ReactNode }) {
     setResults(generateDemoResults())
   }, [])
 
+  const hydrate = useCallback((map: ResultsMap) => setResults(map ?? {}), [])
+
   const playedCount = useMemo(
     () => Object.values(results).filter((r) => r.played).length,
     [results],
   )
 
   const value = useMemo(
-    () => ({ results, setResult, clearAll, loadDemo, playedCount }),
-    [results, setResult, clearAll, loadDemo, playedCount],
+    () => ({ results, setResult, clearAll, loadDemo, hydrate, playedCount }),
+    [results, setResult, clearAll, loadDemo, hydrate, playedCount],
   )
 
   return <ResultsContext.Provider value={value}>{children}</ResultsContext.Provider>

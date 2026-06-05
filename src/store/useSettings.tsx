@@ -15,6 +15,7 @@ interface SettingsContextValue extends Settings {
   isFavorite: (code: string) => boolean
   setPrimary: (code: string | null) => void
   setLive: (patch: Partial<Pick<Settings, 'apiKey' | 'liveMode' | 'pollSeconds'>>) => void
+  hydrate: (patch: Partial<Settings>) => void
 }
 
 const SettingsContext = createContext<SettingsContextValue | null>(null)
@@ -65,9 +66,13 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     setSettings((s) => ({ ...s, ...patch }))
   }, [])
 
+  const hydrate = useCallback((patch: Partial<Settings>) => {
+    setSettings((s) => ({ ...s, ...patch }))
+  }, [])
+
   const value = useMemo<SettingsContextValue>(
-    () => ({ ...settings, setTimezone, toggleFavorite, isFavorite, setPrimary, setLive }),
-    [settings, setTimezone, toggleFavorite, isFavorite, setPrimary, setLive],
+    () => ({ ...settings, setTimezone, toggleFavorite, isFavorite, setPrimary, setLive, hydrate }),
+    [settings, setTimezone, toggleFavorite, isFavorite, setPrimary, setLive, hydrate],
   )
 
   return <SettingsContext.Provider value={value}>{children}</SettingsContext.Provider>

@@ -102,6 +102,22 @@ src/
 
 ---
 
+## 👤 Nalozi i sinhronizacija (Supabase)
+
+Korisnici se mogu prijaviti (**Google**) pa im se favoriti, postavke i uneseni rezultati **čuvaju u bazi** i sinhronizuju preko uređaja. Bez Supabase ključeva aplikacija radi normalno, samo lokalno (bez prijave) — prijava se pojavi tek kad postaviš ključeve.
+
+**Postavljanje (jednom, ~5 min):**
+1. Napravi besplatan projekat na [supabase.com](https://supabase.com).
+2. **SQL Editor** → zalijepi i pokreni [`supabase/schema.sql`](supabase/schema.sql) (kreira tabelu `profiles` + row-level security).
+3. **Authentication → Providers → Google** → uključi i unesi Google OAuth *Client ID* i *Secret* (iz [Google Cloud Console](https://console.cloud.google.com); kao *Authorized redirect URI* stavi `https://<tvoj-projekat>.supabase.co/auth/v1/callback`).
+4. **Authentication → URL Configuration** → *Site URL* = `https://goal-inky.vercel.app` (dodaj i `http://localhost:5173` za lokalno).
+5. **Project Settings → API** → kopiraj *Project URL* i *anon public* ključ.
+6. Postavi ih kao env varijable:
+   - lokalno u `.env`: `VITE_SUPABASE_URL` i `VITE_SUPABASE_ANON_KEY`
+   - na Vercelu: *Settings → Environment Variables* → iste dvije → **Redeploy**.
+
+> Napomena: na prijavi „pobjeđuje" verzija iz baze (sinhronizacija preko uređaja). `anon` ključ je javni po dizajnu — podaci su zaštićeni row-level security pravilima (svako vidi samo svoje).
+
 ## ☁️ Deploy (GitHub + Vercel)
 
 Aplikacija je već postavljena:

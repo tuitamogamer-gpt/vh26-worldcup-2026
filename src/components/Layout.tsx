@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate, Link } from 'react-router-dom'
 import { Icon } from './Icon'
 import { Flag } from './Flag'
 import { LiveControls } from './LiveControls'
+import { AuthButton } from './AuthButton'
 import { useSettings } from '../store/useSettings'
 import { TIMEZONES } from '../utils/timezone'
 import { teams, teamByCode } from '../data/teams'
@@ -128,7 +129,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <SearchBox />
             <LiveControls />
             <TimezonePicker />
-            <div className="avatar"><Icon.ball size={20} /></div>
+            <AuthButton />
           </div>
         </header>
         <main className="main">{children}</main>

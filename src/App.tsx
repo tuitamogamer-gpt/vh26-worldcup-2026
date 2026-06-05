@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 import { ResultsProvider } from './store/useResults'
 import { SettingsProvider } from './store/useSettings'
 import { LiveProvider } from './store/useLive'
+import { AuthProvider } from './store/useAuth'
+import { Sync } from './store/Sync'
 import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
 import { Groups } from './pages/Groups'
@@ -17,7 +19,9 @@ export default function App() {
   return (
     <SettingsProvider>
       <ResultsProvider>
+        <AuthProvider>
         <LiveProvider>
+        <Sync />
         <Layout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -34,6 +38,7 @@ export default function App() {
           </Routes>
         </Layout>
         </LiveProvider>
+        </AuthProvider>
       </ResultsProvider>
     </SettingsProvider>
   )
