@@ -2,6 +2,9 @@
 
 Kompletna web aplikacija za praćenje **FIFA Svjetskog prvenstva 2026** (SAD · Kanada · Meksiko, 11. juni – 19. juli 2026). Dizajn: **VH26** — tamna tema sa lime akcentom, kružni grbovi reprezentacija, font Bricolage Grotesque + Archivo.
 
+> 🔗 **Live demo:** https://goal-inky.vercel.app  
+> 📦 **Kod:** https://github.com/tuitamogamer-gpt/vh26-worldcup-2026
+
 Sve je već uvezeno i spremno: svih **48 reprezentacija**, svih **12 grupa**, kompletan raspored od **104 utakmice**, **16 stadiona** i automatske tabele, plasman i statistika.
 
 ---
@@ -96,6 +99,20 @@ src/
 - **Kickoff vremena** su lokalna vremena stadiona iz zvaničnog rasporeda, preračunata u izabranu vremensku zonu.
 - **Sastavi (rosteri)** su okvirni — sastavljeni iz javnih izvora u junu 2026; konačne liste od 26 igrača FIFA potvrđuje na početku turnira, a klubovi se mogu promijeniti s transferima.
 - **FIFA rang** je okviran, radi prikaza nosilaca.
+
+---
+
+## ☁️ Deploy (GitHub + Vercel)
+
+Aplikacija je već postavljena:
+- **GitHub:** https://github.com/tuitamogamer-gpt/vh26-worldcup-2026
+- **Vercel (produkcija):** https://goal-inky.vercel.app
+
+Svaki `git push` na `main` Vercel može automatski deployati (poveži repo u Vercel dashboardu). Ručni deploy: `vercel --prod`.
+
+**Live rezultati u produkciji** rade kroz Vercel serverless funkciju ([`api/fapi/[...path].ts`](api/fapi/%5B...path%5D.ts)) koja prosljeđuje pozive na API-Football — isto kao lokalni Vite proxy. Ključ možeš:
+- unijeti u aplikaciji (čuva se lokalno u pregledniku), **ili**
+- postaviti kao Vercel env varijablu `WC_API_KEY` (Project → Settings → Environment Variables) da svi posjetioci dijele isti ključ.
 
 ---
 
